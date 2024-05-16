@@ -28,6 +28,10 @@ public class App
         // Game loop
         while (!hangman.isGameOver()) {
             // Prompt the user to guess a letter
+
+            //todo: fix this remove after correct implementation and debugging
+            WordChooser wordChooser = new WordChooser("src/main/java/org/resourses/words.txt");
+            System.out.println(wordChooser.chooseWord());
             System.out.println("Guess a letter: ");
 
             // Read the user's guess
