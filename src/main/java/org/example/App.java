@@ -6,8 +6,7 @@ import java.util.Scanner;
  * This is the main class for the Hangman game.
  * It initializes a Hangman game and handles user input for guessing letters.
  */
-public class App
-{
+public class App {
     /**
      * The main method that starts the Hangman game.
      * It creates a new Hangman game with the word "hangman" and allows up to 10 incorrect guesses.
@@ -17,8 +16,7 @@ public class App
      *
      * @param args command-line arguments (not used)
      */
-    public static void main( String[] args )
-    {
+    public static void main(String[] args) {
         // Initialize a new Hangman game with the word "hangman" and 10 maximum incorrect guesses
         Hangman hangman = new Hangman("hangman", 10);
 
@@ -31,9 +29,19 @@ public class App
 
             //todo: fix this remove after correct implementation and debugging
             WordChooser wordChooser = new WordChooser("src/main/java/org/resourses/words.txt");
-            System.out.println(wordChooser.chooseWord());
+            String chosenWord = wordChooser.chooseWord();
+            System.out.println(chosenWord);
+            String userAgregatedAnswer = null;
+            if (chosenWord.equals(userAgregatedAnswer)) {
+                System.out.println("Word is chosen correctly");
+                GameStatus gameOver = GameStatus.GAME_OVER;
+            } else {
+                System.out.println("Word is not chosen correctly");
+            }
             System.out.println("Guess a letter: ");
 
+            //implement a cycle to read the user's guess
+            //and process it using the guessLetter method of the Hangman class
             // Read the user's guess
             char guess = scanner.nextLine().charAt(0);
 
