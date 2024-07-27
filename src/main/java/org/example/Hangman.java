@@ -39,7 +39,7 @@ public class Hangman {
     }
 
     public boolean isGameOver() {
-    return false;
+    return true;
     }
 
     public void guessLetter(char guess) {
