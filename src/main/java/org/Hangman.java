@@ -1,23 +1,34 @@
 package org;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 
 public class Hangman {
+    private static final Logger LOGGER = Logger.getLogger(Hangman.class.getName());
+
     public static void main(String[] args) {
-        // Task 1: Set up the word list
-//        String[] words = {"university", "creativity", "innovation", "technology", "experience",
-//                "expression", "imagination", "adrenaline", "dedication", "motivation"};
-        //todo: fix this remove after correct implementation and debugging it makes Error reading words file: ./resourses/words.txt
-        List<String> words = new ArrayList<>();
+        List<String> words;
         try {
-            words = Files.readAllLines(Paths.get("./resourses/words.txt"));
+            ClassLoader classLoader = Hangman.class.getClassLoader();
+            words = Files.readAllLines(Paths.get(Objects.requireNonNull(classLoader.getResource("words.txt")).toURI()));
         } catch (IOException e) {
-            System.err.println("Error reading words file: " + e.getMessage());
+            LOGGER.log(Level.SEVERE, "Error reading words file", e);
+            System.err.println("An error occurred while reading the words file. Please try again later.");
+            return;
+        } catch (URISyntaxException e) {
+            LOGGER.log(Level.SEVERE, "Invalid URI syntax for words file", e);
+            System.err.println("An error occurred while accessing the words file. Please try again later.");
+            return;
+        } catch (NullPointerException e) {
+            LOGGER.log(Level.SEVERE, "Words file not found", e);
+            System.err.println("Words file not found. Please ensure the file is in the correct location.");
             return;
         }
         // Task 2: Select a random word
