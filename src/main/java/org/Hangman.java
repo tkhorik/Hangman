@@ -14,21 +14,8 @@ public class Hangman {
     private static final Logger LOGGER = Logger.getLogger(Hangman.class.getName());
 
     public static void main(String[] args) {
-        List<String> words;
-        try {
-            ClassLoader classLoader = Hangman.class.getClassLoader();
-            words = Files.readAllLines(Paths.get(Objects.requireNonNull(classLoader.getResource("words.txt")).toURI()));
-        } catch (IOException e) {
-            LOGGER.log(Level.SEVERE, "Error reading words file", e);
-            System.err.println("An error occurred while reading the words file. Please try again later.");
-            return;
-        } catch (URISyntaxException e) {
-            LOGGER.log(Level.SEVERE, "Invalid URI syntax for words file", e);
-            System.err.println("An error occurred while accessing the words file. Please try again later.");
-            return;
-        } catch (NullPointerException e) {
-            LOGGER.log(Level.SEVERE, "Words file not found", e);
-            System.err.println("Words file not found. Please ensure the file is in the correct location.");
+        List<String> words = loadWordsFromFile();
+        if (words == null) {
             return;
         }
         // Task 2: Select a random word
@@ -84,5 +71,26 @@ public class Hangman {
         } else {
             System.out.println("Sorry, you lost. The word was: " + word);
         }
+    }
+
+    private static List<String> loadWordsFromFile() {
+        List<String> words;
+        try {
+            ClassLoader classLoader = Hangman.class.getClassLoader();
+            words = Files.readAllLines(Paths.get(Objects.requireNonNull(classLoader.getResource("words.txt")).toURI()));
+        } catch (IOException e) {
+            LOGGER.log(Level.SEVERE, "Error reading words file", e);
+            System.err.println("An error occurred while reading the words file. Please try again later.");
+            return null;
+        } catch (URISyntaxException e) {
+            LOGGER.log(Level.SEVERE, "Invalid URI syntax for words file", e);
+            System.err.println("An error occurred while accessing the words file. Please try again later.");
+            return null;
+        } catch (NullPointerException e) {
+            LOGGER.log(Level.SEVERE, "Words file not found", e);
+            System.err.println("Words file not found. Please ensure the file is in the correct location.");
+            return null;
+        }
+        return words;
     }
 }
