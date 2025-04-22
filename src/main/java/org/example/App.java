@@ -22,6 +22,7 @@ public class App {
 
         // Create a Scanner object for reading user input
         Scanner scanner = new Scanner(System.in);
+//        System.out.println("Argument count: " + args.length);
 
         // Game loop
         while (!hangman.isGameOver()) {
