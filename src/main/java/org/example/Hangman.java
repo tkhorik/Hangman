@@ -1,7 +1,5 @@
 package org.example;
 
-import java.util.Collection;
-
 public class Hangman {
     //wordToGuess: the word that needs to be guessed.
     //hiddenWord: the word that is displayed to the player.
@@ -39,14 +37,14 @@ public class Hangman {
     }
 
     public boolean isGameOver() {
-    return true;
+        return !this.hiddenWord.contains("_");
     }
 
     public void guessLetter(char guess) {
-        return;
+        guess(guess);
     }
 
-    public Collection<Object> getVisibleWord() {
-    return null;
+    public String getVisibleWord() {
+        return this.hiddenWord;
     }
 }
