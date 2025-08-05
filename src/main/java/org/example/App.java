@@ -28,10 +28,11 @@ public class App {
         while (!hangman.isGameOver()) {
             // Prompt the user to guess a letter
 
-            //todo: fix this remove after correct implementation and debugging
+
             WordChooser wordChooser = new WordChooser("src/main/resources/words.txt");
-            java.util.Optional<String> chosenWord = wordChooser.chooseWord();
-            chosenWord.ifPresent(System.out::println);
+            String chosenWord = wordChooser.chooseWord();
+            System.out.println(chosenWord);
+
             String userAgregatedAnswer = null;
             if (chosenWord.isPresent() && chosenWord.get().equals(userAgregatedAnswer)) {
                 System.out.println("Word is chosen correctly");
