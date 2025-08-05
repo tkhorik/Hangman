@@ -29,7 +29,7 @@ public class App {
             // Prompt the user to guess a letter
 
             //todo: fix this remove after correct implementation and debugging
-            WordChooser wordChooser = new WordChooser("src/main/java/org/resourses/words.txt");
+            WordChooser wordChooser = new WordChooser("src/main/resources/words.txt");
             java.util.Optional<String> chosenWord = wordChooser.chooseWord();
             chosenWord.ifPresent(System.out::println);
             String userAgregatedAnswer = null;
