@@ -30,10 +30,10 @@ public class App {
 
             //todo: fix this remove after correct implementation and debugging
             WordChooser wordChooser = new WordChooser("src/main/java/org/resourses/words.txt");
-            String chosenWord = wordChooser.chooseWord();
-            System.out.println(chosenWord);
+            java.util.Optional<String> chosenWord = wordChooser.chooseWord();
+            chosenWord.ifPresent(System.out::println);
             String userAgregatedAnswer = null;
-            if (chosenWord.equals(userAgregatedAnswer)) {
+            if (chosenWord.isPresent() && chosenWord.get().equals(userAgregatedAnswer)) {
                 System.out.println("Word is chosen correctly");
                 GameStatus gameOver = GameStatus.GAME_OVER;
             } else {

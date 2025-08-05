@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -28,13 +29,14 @@ public class WordChooser {
     /**
      * Randomly selects a word from the list of words.
      *
-     * @return the randomly selected word
+     * @return an {@link Optional} containing the randomly selected word, or
+     *         {@code Optional.empty()} if no valid words are available
      */
-    public String chooseWord() {
+    public Optional<String> chooseWord() {
         if (words.isEmpty()) {
-            return null;
+            return Optional.empty();
         }
         Random random = new Random();
-        return words.get(random.nextInt(words.size()));
+        return Optional.of(words.get(random.nextInt(words.size())));
     }
 }
