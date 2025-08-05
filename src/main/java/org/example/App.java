@@ -29,11 +29,13 @@ public class App {
             // Prompt the user to guess a letter
 
             //todo: fix this remove after correct implementation and debugging
+
             WordChooser wordChooser = new WordChooser("src/main/resources/words.txt");
             String chosenWord = wordChooser.chooseWord();
             System.out.println(chosenWord);
+
             String userAgregatedAnswer = null;
-            if (chosenWord.equals(userAgregatedAnswer)) {
+            if (chosenWord.isPresent() && chosenWord.get().equals(userAgregatedAnswer)) {
                 System.out.println("Word is chosen correctly");
                 GameStatus gameOver = GameStatus.GAME_OVER;
             } else {

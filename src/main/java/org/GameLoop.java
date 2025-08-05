@@ -14,7 +14,7 @@ public class GameLoop {
 
     public void start() {
         int attempts = maxAttempts;
-        StringBuilder display = new StringBuilder("----------");
+        StringBuilder display = new StringBuilder("-".repeat(word.length()));
         Set<Character> guessedLetters = new HashSet<>();
         Scanner scanner = new Scanner(System.in);
 
