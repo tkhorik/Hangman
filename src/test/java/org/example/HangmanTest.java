@@ -38,4 +38,12 @@ public class HangmanTest {
     public void isGameOverReturnsFalseInitially() {
         assertFalse(hangman.isGameOver());
     }
+
+    @Test
+    public void isGameOverReturnsTrueWhenWordGuessed() {
+        for (char c : "hangman".toCharArray()) {
+            hangman.guess(c);
+        }
+        assertTrue(hangman.isGameOver());
+    }
 }
